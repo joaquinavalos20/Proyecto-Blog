@@ -20,3 +20,12 @@ class Post(models.Model):
     def create_user_profile(sender, instance, created, **kwargs):     
         if created:         
             instance.groups.add(Group.objects.get(name='estudiante'))
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name="comments" ,on_delete=models.CASCADE, verbose_name="Publicación")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Autor")
+    body = models.TextField(verbose_name="Comentario")
+    create_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.post.title, self.author.first_name)

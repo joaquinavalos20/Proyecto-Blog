@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+ Crea un comentario.
+{% endblock %}
+{% block content %}
+
+{%if user.is_authenticated%}
+<h1> Crea un comentario. </h1>
+<br/><br/>
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %} 
+        {{form.as_p}}
+        <button class="btn btn-primary">Añadir Comentario.</button>
+</div>
+<script>
+    var name = "{{user.id}}";
+    document.getElementById("elderdragon").value = name;
+
+</script>
+{%else%}
+
+Debes Iniciar Sesión para continuar!
+
+{%endif%}
+
+
+ {% endblock %}
