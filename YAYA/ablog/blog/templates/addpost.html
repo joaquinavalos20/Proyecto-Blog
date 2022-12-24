@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 
-{%if user.is_superuser%}
+{%if user.is_authenticated%}
 <h1> Crea una publicación </h1>
 <br/><br/>
 

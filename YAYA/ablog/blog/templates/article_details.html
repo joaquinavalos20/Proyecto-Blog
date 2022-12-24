@@ -14,7 +14,7 @@
 <small>{{post.create_on}}</small>
 <hr></hr>
 <br/><br/>
-<a href="{% url "home" %}" class="btn btn-primary">Volver a publicaciones</a>  {%if user.is_superuser%} {%if user.id == post.author.id%} ‍  ‍  ‍  ‍  ‍  ‍  ‍<a href="{% url "updatepost" post.pk %}" class="btn btn-warning">Editar</a>  ‍   ‍   ‍ <a href="{% url "deletepost" post.pk %}" class="btn btn-danger">Borrar</a>
+<a href="{% url "home" %}" class="btn btn-primary">Volver a publicaciones</a>  {%if user.is_authenticated%} {%if user.id == post.author.id%} ‍  ‍  ‍  ‍  ‍  ‍  ‍<a href="{% url "updatepost" post.pk %}" class="btn btn-warning">Editar</a>  ‍   ‍   ‍ <a href="{% url "deletepost" post.pk %}" class="btn btn-danger">Borrar</a>
 <br/><br/><br/><br/><br/>
  {%endif%}
  {%endif%}
@@ -31,7 +31,7 @@
     Aún no hay comentarios.
 {% else %}
     {%for comment in post.comments.all%}
-        <strong>{% if comment.author.is_superuser%}PROFESOR - {% endif %}{{comment.author.first_name}} {{comment.author.last_name}}</strong> - {{comment.create_on}}
+        <strong>{% if comment.author.is_superuser%}STAFF - {% else %}ALUMNO - {% endif %}{{comment.author.first_name}} {{comment.author.last_name}}</strong> - {{comment.create_on}}
         <br/><br/>
         {{comment.body}}
         <hr></hr>

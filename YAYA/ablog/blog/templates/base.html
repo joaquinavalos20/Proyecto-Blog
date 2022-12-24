@@ -30,23 +30,22 @@
         <a class="nav-link" href="https://www.inf.unap.cl/index.php/2016/09/07/malla-curricular/" Target="_blank">Malla Curricular</a>
       </li>
       {%if user.is_authenticated%}
-      <li class="nav-item">
-        <a class="nav-link" href={% url "logout"%}  >Cerrar Sesión</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href={% url "editprofile"%}  >Editar Perfil</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"> {{user.first_name}} {{user.last_name}}</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href={% url "editprofile"%}> Editar Perfil </a>
+          <a class="dropdown-item" href={% url "logout"%}> Cerrar Sesión </a>
+        </div>
       </li>
       {%else%}
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-          Cuenta
-        </a>
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"> Cuenta </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href={% url "register"%}>Registrarse</a>
           <a class="dropdown-item" href={% url "login"%}>Iniciar Sesión</a>
         </div>
-      {%endif%}
       </li>
+      {%endif%}
     </ul>
     
   </div>
