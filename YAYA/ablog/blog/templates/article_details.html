@@ -31,7 +31,7 @@
     Aún no hay comentarios.
 {% else %}
     {%for comment in post.comments.all%}
-        <strong>{{comment.author.first_name}} {{comment.author.last_name}}</strong> - {{comment.create_on}}
+        <strong>{% if comment.author.is_superuser%}PROFESOR - {% endif %}{{comment.author.first_name}} {{comment.author.last_name}}</strong> - {{comment.create_on}}
         <br/><br/>
         {{comment.body}}
         <hr></hr>
