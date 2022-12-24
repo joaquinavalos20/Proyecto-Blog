@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+Edita tu publicación.
+{% endblock %}
+{% block content %}
+{%if user.is_superuser %}
+    {%if user.id == post.author.id%}
+        <h1> Edita tu publicación </h1>
+        <br/><br/>
+
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %} 
+                {{form.media}}
+                {{form.as_p}}
+                <button class="btn btn-warning">Actualizar</button>
+        </div>
+    {%else%}
+
+    Solo el creador puede editar esta publicación!
+    {%endif%}
+{%else%}
+
+Debes Iniciar Sesión para continuar!
+{%endif%}
+<br></br>
+<a href="{% url "home" %}" class="btn btn-primary">Volver a publicaciones</a>
+
+ {% endblock %}

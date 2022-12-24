@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}
+Borra tu publicación.
+{% endblock %}
+{% block content %}
+{%if user.is_superuser %}
+{%if user.id == post.author.id%}
+<h1> Borra tu publicación </h1>
+<br/><br/>
+<h3>Borrar: {{ post.title }}</h3>
+
+<div class="form-group">
+    <form method="POST">
+        {% csrf_token %} 
+        <strong> Estás seguro que quieres borrar la publicación?</strong><br/><br/>
+        <button class="btn btn-danger">Borrar</button>
+</div>
+{%else%}
+
+Solo  el creador puede borrar esta publicación!
+{%endif%}
+<br/><br/>
+<a href="{% url "home" %}" class="btn btn-primary">Volver a publicaciones</a>
+
+{%else%}
+
+Debes Iniciar Sesión para continuar!
+
+{%endif%}
+
+ {% endblock %}

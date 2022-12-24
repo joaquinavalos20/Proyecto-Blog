@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+    {% block title %}
+    {{post.title}} - {{ post.author.first_name }}
+    {% endblock %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<small>Creador: {{ post.author.first_name }} {{ post.author.name_name }}</small><br/>
+<hr>
+<br/>
+{{ post.body|safe }}<br/>
+<br/>
+<small>{{post.create_on}}</small>
+
+<br/><br/>
+<a href="{% url "home" %}" class="btn btn-primary">Volver a publicaciones</a>  {%if user.is_superuser%} {%if user.id == post.author.id%} ‍  ‍  ‍  ‍  ‍  ‍  ‍<a href="{% url "updatepost" post.pk %}" class="btn btn-warning">Editar</a>  ‍   ‍   ‍ <a href="{% url "deletepost" post.pk %}" class="btn btn-danger">Borrar</a>
+<br/><br/><br/><br/><br/>
+ {%endif%}
+ {%endif%}
+ <br/><br/><br/><br/><br/><br/>
+ {% endblock %}
+
