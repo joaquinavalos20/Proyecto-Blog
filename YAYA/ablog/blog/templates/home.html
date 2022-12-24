@@ -14,7 +14,7 @@
 {% for post in object_list %}
 <hr>
     <h3 class="mt-5">{{ post.title }}</h3>
-    {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.author.email }}<br><br/>
+    {%if post.author.is_superuser%}<b>PROFESOR </b>{%endif%}{{ post.author.first_name }} {{ post.author.last_name }} - {{ post.author.email }}<br><br/>
     {{ post.body|safe}} <!--slice:"90"-->
     </br></br>
     <small>{{post.create_on}}</small>
